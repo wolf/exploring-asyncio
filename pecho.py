@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-# aecho.py
+# pecho.py
 
 from socket import *
-import asyncio
+import play
 
-loop = asyncio.get_event_loop()
+loop = play.Loop() 
 
 async def echo_server(address):
     sock = socket(AF_INET, SOCK_STREAM)

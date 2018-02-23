@@ -4,9 +4,9 @@
 # aecho.py
 
 from socket import *
-import play
+import asyncio
 
-loop = play.Loop() 
+loop = asyncio.get_event_loop()
 
 async def echo_server(address):
     sock = socket(AF_INET, SOCK_STREAM)
