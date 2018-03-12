@@ -7,7 +7,7 @@ import asyncio
 @asyncio.coroutine
 def countdown(number, n):
     while n > 0:
-        print('T-minu', n, '({})'.format(number))
+        print('T-minus', n, '({})'.format(number))
         yield from asyncio.sleep(1)
         n -= 1
 

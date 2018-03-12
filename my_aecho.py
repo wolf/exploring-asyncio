@@ -4,9 +4,9 @@
 # pecho.py
 
 from socket import *
-import play
+import my_asyncio
 
-loop = play.Loop() 
+loop = my_asyncio.Loop()
 
 async def echo_server(address):
     sock = socket(AF_INET, SOCK_STREAM)
