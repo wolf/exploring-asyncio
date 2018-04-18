@@ -8,6 +8,7 @@ import asyncio
 
 loop = asyncio.get_event_loop()
 
+
 async def echo_server(address):
     sock = socket(AF_INET, SOCK_STREAM)
     sock.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
@@ -16,8 +17,9 @@ async def echo_server(address):
     sock.setblocking(False)
     while True:
         client, addr = await loop.sock_accept(sock)
-        print('Connection from', addr)
+        print("Connection from", addr)
         loop.create_task(echo_handler(client))
+
 
 async def echo_handler(client):
     with client:
@@ -25,10 +27,10 @@ async def echo_handler(client):
             data = await loop.sock_recv(client, 10000)
             if not data:
                 break
-            await loop.sock_sendall(client, b'Got:'+data)
-    print('Connection closed')
+
+            await loop.sock_sendall(client, b"Got:" + data)
+    print("Connection closed")
 
 
-loop.create_task(echo_server(('', 25000)))
+loop.create_task(echo_server(("", 25000)))
 loop.run_forever()
-

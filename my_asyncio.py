@@ -4,16 +4,19 @@ from types import coroutine
 from collections import deque
 from selectors import DefaultSelector, EVENT_READ, EVENT_WRITE
 
+
 @coroutine
 def read_wait(sock):
-    yield 'read_wait', sock
+    yield "read_wait", sock
 
 
 @coroutine
 def write_wait(sock):
-    yield 'write_wait', sock
+    yield "write_wait", sock
+
 
 class Loop:
+
     def __init__(self):
         self.ready = deque()
         self.selector = DefaultSelector()
@@ -47,8 +50,8 @@ class Loop:
             while self.ready:
                 self.current_task = self.ready.popleft()
                 try:
-                    op, *args = self.current_task.send(None) # Run to the yield
-                    getattr(self, op)(*args) # Sneaky method call
+                    op, *args = self.current_task.send(None)  # Run to the yield
+                    getattr(self, op)(*args)  # Sneaky method call
                 except StopIteration:
                     pass
 
